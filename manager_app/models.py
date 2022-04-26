@@ -1,9 +1,16 @@
 from django.db import models
+from django.utils.text import slugify
 # Create your models here.
 
 class Person(models.Model):
     name = models.CharField(max_length=30, unique=True, null=False, blank=False)
     email = models.EmailField(blank=True, unique=True)
+    admin = models.BooleanField(blank=True, default=False)
+    slug = models.SlugField(blank=True, null=False)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
     class Meta:
         verbose_name_plural = "People"
 
