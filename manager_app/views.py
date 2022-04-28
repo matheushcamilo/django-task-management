@@ -3,14 +3,14 @@ from django.shortcuts import render
 from .models import Person
 # Create your views here.
 
-
 def show_customized_home_page(request, person_slug):
     try:
         person = Person.objects.get(slug=person_slug)
         if(person.admin is False):
             return render(request, 'manager_app/home.html', {
                 "person": person,
-                "tasks": person.tasks.all()
+                "tasks": person.tasks.all(),
+                "participations": person.participations.all()
             })
         else:
             people = Person.objects.all()
