@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro de Pessoa{% endblock title %}
+
+{% block content %}
+    <form action="/create-person" method="POST">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Cadastrar">
+    </form>
+{% endblock content %}
