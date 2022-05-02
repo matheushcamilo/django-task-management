@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Página de Edição{% endblock title %}
+
+{% block content %}
+    <form action="{% url 'create-person' %}">
+        <input type="submit" value="Cadastrar pessoa">
+    </form>
+    <form action="{% url 'create-task' %}">
+        <input type="submit" value="Criar parte">
+    </form>
+    <ul>
+        {% for person in people %}
+            <a href="{% url 'show-person' person.slug %}">{{person.name}}</a>
+        {% endfor %}
+    </ul>
+{% endblock content %}

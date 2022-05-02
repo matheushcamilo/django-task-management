@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro de Partes{% endblock title %}
+
+{% block content %}
+    <form action="/create-task" method="POST">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Cadastrar">
+    </form>
+{% endblock content %}
