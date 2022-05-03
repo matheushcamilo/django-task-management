@@ -1,4 +1,4 @@
-from tkinter.messagebox import NO
+from datetime import date
 from django.db import models
 from django.utils.text import slugify
 # Create your models here.
@@ -28,7 +28,7 @@ class Task(models.Model):
         DISURSO_PUBLICO = 'DP', 'Discurso Público'
     
 
-    date = models.DateField(null=False, blank=False)
+    date = models.DateField(null=False, blank=False, default=date.today())
     task_type = models.CharField(max_length=2, null=False, blank=False, choices=TaskType.choices)
     person = models.ForeignKey(Person, on_delete=models.SET_NULL, null=True, blank=True, related_name='tasks')
     guest = models.ForeignKey(Person, on_delete=models.SET_NULL, null=True, blank=True, related_name='participations')
@@ -46,3 +46,9 @@ class Task(models.Model):
 
     def is_one_person_task(self):
         return self.task_type in ('D', 'DP')    
+
+
+
+
+
+

@@ -11,7 +11,7 @@
     </form>
     <ul>
         {% for person in people %}
-            <a href="{% url 'show-person' person.slug %}">{{person.name}}</a>
+            <a href="{% url 'show-person' person.slug %}"><li>{{person.name}}</li></a>
         {% endfor %}
     </ul>
 {% endblock content %}

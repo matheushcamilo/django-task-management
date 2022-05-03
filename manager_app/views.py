@@ -15,7 +15,7 @@ def show_customized_home_page(request, person_slug):
                 "participations": person.participations.all()
             })
         else:
-            people = Person.objects.all()
+            people = Person.objects.all().order_by('name')
             return render(request, 'manager_app/all-people.html', {
                 "people": people
             })
@@ -26,9 +26,7 @@ def create_person(request):
     if request.method == 'POST':
         form = PersonForm(request.POST)
         if form.is_valid():
-            clean_data = form.cleaned_data
-            person = Person(name=clean_data['name'], email=clean_data['email'], admin=clean_data['admin'])
-            person.save()
+            form.save()
             return HttpResponseRedirect('/create-person')      
     else:
         form = PersonForm()
